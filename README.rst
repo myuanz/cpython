@@ -1,3 +1,14 @@
+
+Build and Run:
+
+.. code-block:: console
+
+   ((v3.13.11))# ./python -m timeit "n=1024; (0,)*n; [0]*n"
+   500000 loops, best of 5: 943 nsec per loop
+   [alloc-align] list ob_item calls=3388902 align8=3388902 align16=3388902 align32=3388893 align64=3388891
+   [alloc-align] tuple ob_item calls=3398813 align8=3398813 align16=0 align32=0 align64=0
+
+==============================
 This is Python version 3.13.11
 ==============================
 

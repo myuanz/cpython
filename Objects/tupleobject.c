@@ -8,6 +8,8 @@
 #include "pycore_initconfig.h"    // _PyStatus_OK()
 #include "pycore_modsupport.h"    // _PyArg_NoKwnames()
 #include "pycore_object.h"        // _PyObject_GC_TRACK(), _Py_FatalRefcountError(), _PyDebugAllocatorStats()
+#include <inttypes.h>
+#include <stdint.h>
 
 /*[clinic input]
 class tuple "PyTupleObject *" "&PyTuple_Type"
@@ -15,6 +17,53 @@ class tuple "PyTupleObject *" "&PyTuple_Type"
 /*[clinic end generated code: output=da39a3ee5e6b4b0d input=f051ba3cfdf9a189]*/
 
 #include "clinic/tupleobject.c.h"
+
+typedef struct {
+    uint64_t calls;
+    uint64_t align8;
+    uint64_t align16;
+    uint64_t align32;
+    uint64_t align64;
+} _PyAllocAlignStats;
+
+static _PyAllocAlignStats tuple_ob_item_align;
+static int tuple_align_atexit_registered = 0;
+
+static inline void
+_py_count_align(_PyAllocAlignStats *s, const void *p)
+{
+    const uintptr_t u = (uintptr_t)p;
+    s->calls++;
+    if ((u & 7) == 0) s->align8++;
+    if ((u & 15) == 0) s->align16++;
+    if ((u & 31) == 0) s->align32++;
+    if ((u & 63) == 0) s->align64++;
+}
+
+static void
+tuple_align_dump(void)
+{
+    fprintf(stderr,
+            "[alloc-align] tuple ob_item calls=%" PRIu64 " align8=%" PRIu64
+            " align16=%" PRIu64 " align32=%" PRIu64 " align64=%" PRIu64 "\n",
+            tuple_ob_item_align.calls,
+            tuple_ob_item_align.align8,
+            tuple_ob_item_align.align16,
+            tuple_ob_item_align.align32,
+            tuple_ob_item_align.align64);
+}
+
+static inline void
+tuple_align_register_atexit_once(void)
+{
+    if (tuple_align_atexit_registered) {
+        return;
+    }
+    tuple_align_atexit_registered = 1;
+    if (Py_AtExit(tuple_align_dump) < 0) {
+        Py_FatalError("Py_AtExit(tuple_align_dump) failed");
+    }
+}
 
 
 static inline PyTupleObject * maybe_freelist_pop(Py_ssize_t);
@@ -53,6 +102,8 @@ tuple_alloc(Py_ssize_t size)
         if (op == NULL)
             return NULL;
     }
+    tuple_align_register_atexit_once();
+    _py_count_align(&tuple_ob_item_align, op->ob_item);
     return op;
 }
 
