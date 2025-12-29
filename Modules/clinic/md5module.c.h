@@ -98,6 +98,7 @@ _md5_md5(PyObject *module, PyObject *const *args, Py_ssize_t nargs, PyObject *kw
     static struct {
         PyGC_Head _this_is_not_used;
         PyObject_VAR_HEAD
+        char ob_item_pad[8];
         PyObject *ob_item[NUM_KEYWORDS];
     } _kwtuple = {
         .ob_base = PyVarObject_HEAD_INIT(&PyTuple_Type, NUM_KEYWORDS)
@@ -156,4 +157,4 @@ skip_optional_kwonly:
 exit:
     return return_value;
 }
-/*[clinic end generated code: output=3a2880d9fb5801cd input=a9049054013a1b77]*/
+/*[clinic end generated code: output=e99b0003d064e64c input=a9049054013a1b77]*/

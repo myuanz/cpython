@@ -65,6 +65,7 @@ def declare_parser(
             static struct {{
                 PyGC_Head _this_is_not_used;
                 PyObject_VAR_HEAD
+                char ob_item_pad[8];
                 PyObject *ob_item[NUM_KEYWORDS];
             }} _kwtuple = {{
                 .ob_base = PyVarObject_HEAD_INIT(&PyTuple_Type, NUM_KEYWORDS)

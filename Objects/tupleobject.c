@@ -102,8 +102,8 @@ tuple_alloc(Py_ssize_t size)
         if (op == NULL)
             return NULL;
     }
-    tuple_align_register_atexit_once();
-    _py_count_align(&tuple_ob_item_align, op->ob_item);
+    // tuple_align_register_atexit_once();
+    // _py_count_align(&tuple_ob_item_align, op->ob_item);
     return op;
 }
 

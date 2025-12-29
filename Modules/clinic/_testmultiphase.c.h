@@ -85,6 +85,7 @@ _testmultiphase_StateAccessType_increment_count_clinic(StateAccessTypeObject *se
     static struct {
         PyGC_Head _this_is_not_used;
         PyObject_VAR_HEAD
+        char ob_item_pad[8];
         PyObject *ob_item[NUM_KEYWORDS];
     } _kwtuple = {
         .ob_base = PyVarObject_HEAD_INIT(&PyTuple_Type, NUM_KEYWORDS)
@@ -162,4 +163,4 @@ _testmultiphase_StateAccessType_get_count(StateAccessTypeObject *self, PyTypeObj
     }
     return _testmultiphase_StateAccessType_get_count_impl(self, cls);
 }
-/*[clinic end generated code: output=59cb50dae2d11dc1 input=a9049054013a1b77]*/
+/*[clinic end generated code: output=7e5a0c6d5dceffe9 input=a9049054013a1b77]*/

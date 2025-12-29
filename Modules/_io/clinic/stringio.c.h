@@ -310,6 +310,7 @@ _io_StringIO___init__(PyObject *self, PyObject *args, PyObject *kwargs)
     static struct {
         PyGC_Head _this_is_not_used;
         PyObject_VAR_HEAD
+        char ob_item_pad[8];
         PyObject *ob_item[NUM_KEYWORDS];
     } _kwtuple = {
         .ob_base = PyVarObject_HEAD_INIT(&PyTuple_Type, NUM_KEYWORDS)
@@ -549,4 +550,4 @@ _io_StringIO_newlines_get(stringio *self, void *Py_UNUSED(context))
 
     return return_value;
 }
-/*[clinic end generated code: output=b16edb931e4fa548 input=a9049054013a1b77]*/
+/*[clinic end generated code: output=13ed60516020ce35 input=a9049054013a1b77]*/

@@ -60,6 +60,7 @@ InstructionSequenceType_use_label(_PyInstructionSequence *self, PyObject *const 
     static struct {
         PyGC_Head _this_is_not_used;
         PyObject_VAR_HEAD
+        char ob_item_pad[8];
         PyObject *ob_item[NUM_KEYWORDS];
     } _kwtuple = {
         .ob_base = PyVarObject_HEAD_INIT(&PyTuple_Type, NUM_KEYWORDS)
@@ -121,6 +122,7 @@ InstructionSequenceType_addop(_PyInstructionSequence *self, PyObject *const *arg
     static struct {
         PyGC_Head _this_is_not_used;
         PyObject_VAR_HEAD
+        char ob_item_pad[8];
         PyObject *ob_item[NUM_KEYWORDS];
     } _kwtuple = {
         .ob_base = PyVarObject_HEAD_INIT(&PyTuple_Type, NUM_KEYWORDS)
@@ -233,6 +235,7 @@ InstructionSequenceType_add_nested(_PyInstructionSequence *self, PyObject *const
     static struct {
         PyGC_Head _this_is_not_used;
         PyObject_VAR_HEAD
+        char ob_item_pad[8];
         PyObject *ob_item[NUM_KEYWORDS];
     } _kwtuple = {
         .ob_base = PyVarObject_HEAD_INIT(&PyTuple_Type, NUM_KEYWORDS)
@@ -301,4 +304,4 @@ InstructionSequenceType_get_instructions(_PyInstructionSequence *self, PyObject 
 {
     return InstructionSequenceType_get_instructions_impl(self);
 }
-/*[clinic end generated code: output=8809d7aa11d9b2bb input=a9049054013a1b77]*/
+/*[clinic end generated code: output=5035fce7ece591ad input=a9049054013a1b77]*/

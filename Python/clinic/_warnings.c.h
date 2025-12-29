@@ -47,6 +47,7 @@ warnings_warn(PyObject *module, PyObject *const *args, Py_ssize_t nargs, PyObjec
     static struct {
         PyGC_Head _this_is_not_used;
         PyObject_VAR_HEAD
+        char ob_item_pad[8];
         PyObject *ob_item[NUM_KEYWORDS];
     } _kwtuple = {
         .ob_base = PyVarObject_HEAD_INIT(&PyTuple_Type, NUM_KEYWORDS)
@@ -154,6 +155,7 @@ warnings_warn_explicit(PyObject *module, PyObject *const *args, Py_ssize_t nargs
     static struct {
         PyGC_Head _this_is_not_used;
         PyObject_VAR_HEAD
+        char ob_item_pad[8];
         PyObject *ob_item[NUM_KEYWORDS];
     } _kwtuple = {
         .ob_base = PyVarObject_HEAD_INIT(&PyTuple_Type, NUM_KEYWORDS)
@@ -244,4 +246,4 @@ warnings_filters_mutated(PyObject *module, PyObject *Py_UNUSED(ignored))
 {
     return warnings_filters_mutated_impl(module);
 }
-/*[clinic end generated code: output=f2d4214c382717a6 input=a9049054013a1b77]*/
+/*[clinic end generated code: output=a4fa8a52fd3295b8 input=a9049054013a1b77]*/

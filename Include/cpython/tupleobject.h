@@ -4,6 +4,8 @@
 
 typedef struct {
     PyObject_VAR_HEAD
+    /* 8-byte padding before ob_item (see user request). */
+    char ob_item_pad[8];
     /* ob_item contains space for 'ob_size' elements.
        Items must normally not be NULL, except during construction when
        the tuple is not yet visible outside the function that builds it. */

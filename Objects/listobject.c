@@ -381,8 +381,8 @@ list_new_prealloc(Py_ssize_t size)
     }
 #endif
     op->allocated = size;
-    list_align_register_atexit_once();
-    _py_count_align(&list_ob_item_align, op->ob_item);
+    // list_align_register_atexit_once();
+    // _py_count_align(&list_ob_item_align, op->ob_item);
     return (PyObject *) op;
 }
 

@@ -114,6 +114,7 @@ complex_new(PyTypeObject *type, PyObject *args, PyObject *kwargs)
     static struct {
         PyGC_Head _this_is_not_used;
         PyObject_VAR_HEAD
+        char ob_item_pad[8];
         PyObject *ob_item[NUM_KEYWORDS];
     } _kwtuple = {
         .ob_base = PyVarObject_HEAD_INIT(&PyTuple_Type, NUM_KEYWORDS)
@@ -160,4 +161,4 @@ skip_optional_pos:
 exit:
     return return_value;
 }
-/*[clinic end generated code: output=295ecfd71389d7fe input=a9049054013a1b77]*/
+/*[clinic end generated code: output=b4c1db40ce0990fd input=a9049054013a1b77]*/

@@ -459,6 +459,7 @@ _overlapped_Overlapped(PyTypeObject *type, PyObject *args, PyObject *kwargs)
     static struct {
         PyGC_Head _this_is_not_used;
         PyObject_VAR_HEAD
+        char ob_item_pad[8];
         PyObject *ob_item[NUM_KEYWORDS];
     } _kwtuple = {
         .ob_base = PyVarObject_HEAD_INIT(&PyTuple_Type, NUM_KEYWORDS)
@@ -1239,4 +1240,4 @@ exit:
 
     return return_value;
 }
-/*[clinic end generated code: output=958cbddbcc355f47 input=a9049054013a1b77]*/
+/*[clinic end generated code: output=c5ad25b1c62b4d6f input=a9049054013a1b77]*/
